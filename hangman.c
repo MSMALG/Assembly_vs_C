@@ -1,29 +1,18 @@
 #include <stdio.h>
 #include <string.h>
-#define WORD "CODE"
-#define MAX_TRIES 5
 
 int main() {
-    int tries = MAX_TRIES, correct_guesses = 0;
-    char guess;
+    char word[] = "CODE"; // Word to guess
+    char guess = 'F';     // Hardcoded guessed letter
+    int correct = 0;      // Correct flag (0 = incorrect)
 
-    while (tries > 0 && correct_guesses < strlen(WORD)) {
-        printf("Guess a letter: ");
-        scanf(" %c", &guess);
-
-        if (strchr(WORD, guess)) {  // Check if guess is in WORD
-            printf("\nCorrect!\n");
-            correct_guesses++;
-        } else {
-            tries--;
-            printf("\nIncorrect! Tries left: %d\n", tries);
+    for (int i = 0; i < strlen(word); i++) {
+        if (word[i] == guess) {
+            correct = 1;
+            break;
         }
     }
 
-    if (correct_guesses == strlen(WORD))
-        printf("\nYou won!\nThe word was: %s\n", WORD);
-    else
-        printf("\nYou lost! The word was: %s\n", WORD);
-
+    printf("Correct: %d\n", correct); // Output the result
     return 0;
 }
